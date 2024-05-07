@@ -16,15 +16,17 @@ function App() {
     const fetchPostsAwait = async () => {
       try {
         const posts = await fetchPosts()
-        setPosts(posts)
-        setLoading(false)
+        setPosts(posts) // Guardamos los posts en el estado
+        setLoading(false) // Cambiamos el estado de loading a false (indicando que ya se cargaron los posts)
       } catch (error) {
         console.error(error)
       }
     }
 
     fetchPostsAwait()
-  }, [])
+  }, []) // Pasamos un array vacío como segundo argumento para que useEffect se ejecute solo una vez, por lo general
+  // se le pasa un array con dependencias (variables/estado) para que useEffect se ejecute cada vez que una de las
+  // dependencias cambie, pero en este caso solo queremos que se ejecute una vez que es al cargarse la página.
 
   return (
     <section className="container mx-auto min-h-dvh w-dvw py-6">
